@@ -22,6 +22,7 @@ export interface Pro
   respon:string
 }
 export interface Applicant {
+    _id:string,
     firstName:string,
     lastName:string,
     dob:string,

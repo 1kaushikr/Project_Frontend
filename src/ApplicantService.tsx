@@ -1,30 +1,56 @@
 import Axios from "axios"
-import { Applicant } from "./Applicant";
-import { useState } from "react";
-import { error } from "console";
 
-interface IState 
-{
-    loading:boolean,
-    applicant:Applicant[],
-    errorMsg:string
-}
+
+
 export class ApplicantService 
 {
     private static URL:string ='https://localhost:7265'
-    public static getAllPersons()
+    public static getAllApplicant()
     {
-        const [state,setState] = useState<IState>({
-            loading:false,
-            applicant:[] as Applicant[],
-            errorMsg:""
-        })
         let ApplicantURL:string = this.URL+'/Applicant'
-        return Axios.get(ApplicantURL);
+        let res = Axios.get(ApplicantURL)
+        return res
     }
-    public static post(x:Applicant)
+    public static getApp(appId:string)
     {
-        const [data,setData]= useState([])
-        
+      let ApplicantURL:string = this.URL+'/Applicant/'+appId
+      return Axios.get(ApplicantURL)
     }
-}
+    public static post(x:any)
+    {
+        var payload={
+        firstName:x.firstName,
+        lastName:x.lastName,
+        dob:x.dob,
+        phoneList:x.phoneList,
+        emailList:x.emailList,
+        eduList:x.eduList,
+        expList:x.expList,
+        proList:x.proList,
+        skill:x.skill
+    }
+    let ApplicantURL:string = this.URL+'/Applicant'
+        Axios.post(ApplicantURL, payload
+          )
+          .then((response) => {
+            console.log(response.data);
+          })
+          .catch((error) => {
+            console.log(error);
+          })
+    }
+  public static SendQuery(query:string){
+    var payload={
+      _query:query   
+  }
+  let ApplicantURL:string = this.URL+'/Applicant/Query'
+        Axios.post(ApplicantURL, payload
+          )
+          .then((response) => {
+            console.log(response.data);
+          })
+          .catch((error) => {
+            console.log(error);
+          })
+    }
+  }

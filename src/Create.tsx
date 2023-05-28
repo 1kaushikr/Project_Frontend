@@ -1,18 +1,22 @@
 import Multiselect from "multiselect-react-dropdown";
 import { ChangeEvent, useState } from "react";
-import {Pro,Exp,Edu,Applicant} from './Applicant';
+import {Pro,Exp,Edu} from './Applicant';
 import { ApplicantService } from "./ApplicantService";
+import App from "./App";
 
 export interface IUser {
     firstName:string,
     lastName:string,
     dob:string
 }
+interface clicked {
+  yes:boolean
+}
 
 const Create: React.FC=()=>
 {
   const handleSubmit = ():void =>{
-    const model: Applicant ={
+    const model ={
       firstName:user.firstName,
       lastName:user.lastName,
       dob:user.dob,
@@ -23,9 +27,10 @@ const Create: React.FC=()=>
       proList:proList,
       skill:skill
     }
+    setclicked({yes:true})
     ApplicantService.post(model)
   }
-
+  const [clicked,setclicked] = useState<clicked>({yes:false})
   const [user, setUser] = useState<IUser>({
       firstName:"First Name",
       lastName:"Last Name",
@@ -161,6 +166,8 @@ const Create: React.FC=()=>
   }
   return (
     <>
+     {clicked.yes?<h1>Submitted Successfully!</h1>:<h1>Not Submitted Yet!</h1>}
+     
       <form >
         <label>First Name:
           <input  type="text" value ={user.firstName} onChange={handleChange} name="firstName"/>
