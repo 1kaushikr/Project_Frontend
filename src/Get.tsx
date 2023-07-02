@@ -2,7 +2,7 @@ import { Applicant } from "./Applicant";
 import React,{useState,useEffect} from "react";
 import { ApplicantService } from "./ApplicantService";
 import { Link } from "react-router-dom";
-interface IState 
+interface IState
 {
     loading:boolean,
     applicant:Applicant[],
@@ -16,6 +16,7 @@ const   Get: React.FC=()=>
     errorMsg:''
   })
   useEffect(()=>{
+    setState({loading:true,errorMsg:"",applicant:[]})
     ApplicantService.getAllApplicant().then(res=>setState({
       ...state,loading:false,applicant:res.data
     }))
@@ -27,13 +28,8 @@ const   Get: React.FC=()=>
     <>
     <h1>Applicants</h1>
     {state.errorMsg && (<p>Error: {state.errorMsg}</p>)}
-    {state.loading && (<h1>{state.loading}</h1>)}
+    {state.loading && (<h1>Loading......</h1>)}
     <table>
-      <thead>
-        <tr>
-          <td><h1>Name</h1></td>
-        </tr>
-      </thead>
       <tbody>
         {
           state.applicant.length>0 && state.applicant.map(user=>(

@@ -13,6 +13,7 @@ const App: React.FC=()=>
     <Routes>
       <Route path='/add' element={<Create/>}/>
       <Route path="/user/:id" element={<About/>}/>
+      <Route path="query/user/:id" element={<About/>}/>
       <Route path='/' element={<Get/>}/>
       <Route path='/query' element={<Query/>}/>
     </Routes>

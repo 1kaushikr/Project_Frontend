@@ -1,4 +1,5 @@
 import Axios from "axios"
+import { log } from "console"
 
 
 
@@ -13,6 +14,7 @@ export class ApplicantService
     }
     public static getApp(appId:string)
     {
+      console.log(appId)
       let ApplicantURL:string = this.URL+'/Applicant/'+appId
       return Axios.get(ApplicantURL)
     }
@@ -44,13 +46,8 @@ export class ApplicantService
       _query:query   
   }
   let ApplicantURL:string = this.URL+'/Applicant/Query'
-        Axios.post(ApplicantURL, payload
-          )
-          .then((response) => {
-            console.log(response.data);
-          })
-          .catch((error) => {
-            console.log(error);
-          })
+      var v =  Axios.post(ApplicantURL, payload)
+      console.log(v);
+      return v;
     }
   }
