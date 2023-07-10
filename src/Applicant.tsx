@@ -31,6 +31,6 @@ export interface Applicant {
     eduList:Edu[],
     expList:Exp[],
     proList:Pro[],
-    skill:string[]
+    skill:string
   }
 

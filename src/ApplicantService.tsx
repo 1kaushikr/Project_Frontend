@@ -1,7 +1,4 @@
 import Axios from "axios"
-import { log } from "console"
-
-
 
 export class ApplicantService 
 {
@@ -14,7 +11,6 @@ export class ApplicantService
     }
     public static getApp(appId:string)
     {
-      console.log(appId)
       let ApplicantURL:string = this.URL+'/Applicant/'+appId
       return Axios.get(ApplicantURL)
     }
@@ -30,24 +26,16 @@ export class ApplicantService
         expList:x.expList,
         proList:x.proList,
         skill:x.skill
+      }
+      let ApplicantURL:string = this.URL+'/Applicant'
+      return Axios.post(ApplicantURL, payload)
     }
-    let ApplicantURL:string = this.URL+'/Applicant'
-        Axios.post(ApplicantURL, payload
-          )
-          .then((response) => {
-            console.log(response.data);
-          })
-          .catch((error) => {
-            console.log(error);
-          })
+    public static SendQuery(query:string)
+    {
+      var payload={
+        _query:query   
+      }
+      let ApplicantURL:string = this.URL+'/Applicant/Query'
+      return Axios.post(ApplicantURL, payload)
     }
-  public static SendQuery(query:string){
-    var payload={
-      _query:query   
-  }
-  let ApplicantURL:string = this.URL+'/Applicant/Query'
-      var v =  Axios.post(ApplicantURL, payload)
-      console.log(v);
-      return v;
-    }
-  }
+}

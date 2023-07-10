@@ -17,7 +17,7 @@ const Query: React.FC=(props)=>
         applicant:[],
         errorMsg:''
       })
-    const handleChange =(event:React.ChangeEvent<HTMLInputElement>):void=>{
+    const handleChange =(event:React.ChangeEvent<HTMLTextAreaElement>):void=>{
         setQuery(event.target.value)
       }
     const handleSubmit = ():void =>{
@@ -57,10 +57,14 @@ const Query: React.FC=(props)=>
 
     return (
         <>
-            <label>Query:
-                <input  type="text" value={query} onChange={handleChange}  className="form-label" />
-            </label>
-            <button className="btn btn-primary" onClick={()=>handleSubmit()}>Fetch</button>
+
+            <div className="p-3 m-0 border-0 bd-example m-0 border-0">
+            <div className="form-floating">
+                <textarea className="form-control" onChange={handleChange}  style={{height: 150}} />
+                <label htmlFor="floatingTextarea2">Query...</label>
+                <button className="btn btn-primary" onClick={()=>handleSubmit()}>Fetch</button>
+            </div>
+            </div>
         </>
     )
 }

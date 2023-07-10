@@ -35,7 +35,7 @@ const About: React.FC=()=>
   const {firstName,lastName,dob,emailList,phoneList,eduList,expList,proList,skill}=applicant
   return (
     <>
-        <h1>Single User Detail Page...</h1>
+        <h1>Single User Detail Page</h1>
         { loading? <h1>Loading...</h1>: errorMsg? <h1>{errorMsg}</h1>:
           <div className="row">
             <ul className="list-group">
@@ -58,7 +58,7 @@ const About: React.FC=()=>
               </li>
               ))}
               <li className="list-group-item">
-                  <h2>Emails</h2>
+                  <h2>Emails:</h2>
               </li> 
               { emailList?.length>0 && emailList.map(ele=>(
             <li className="list-group-item">
@@ -118,11 +118,9 @@ const About: React.FC=()=>
               <li className="list-group-item">
                   <h2>Skills:</h2>
               </li>
-              { skill?.length>0 && skill.map(ele=>(
-                <li className="list-group-item">
-                  {ele}
-                </li>
-              ))} 
+              <li>
+                {skill}
+              </li>
               
             </ul>
           </div>
